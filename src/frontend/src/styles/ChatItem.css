@@ -1,0 +1,25 @@
+.chat-item {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .chat-item.from-me {
+    justify-content: flex-end;
+  }
+  
+  .chat-content {
+    padding: 1rem;
+    border-radius: 0.2rem;
+    max-width: 100%;
+    background-color: #E1EEE9;
+    /* align-self: flex-end; */
+    /* box-shadow: 0px 10px 5px rgba(255, 6, 6, 0.1); */
+  }
+  
+  .chat-content.from-me {
+    background-color: #2196f3;
+    color: white;
+    /* align-self: flex-end; */
+  }
+  
