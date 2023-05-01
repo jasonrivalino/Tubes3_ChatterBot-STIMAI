@@ -24,9 +24,9 @@ function App() {
       <RadioButton
         name="algoritma"
         value1="0"
-        label1="   Knuth-Moore-Pratt (KMP)"
+        label1="   KMP"
         value2="1"
-        label2="   Boyer-Moore (BM)"
+        label2="   BM"
         defaultValue="0"
       />
     </div>

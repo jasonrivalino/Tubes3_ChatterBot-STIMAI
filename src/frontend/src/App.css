@@ -75,6 +75,21 @@ h3 {
   height: 100vh;
   background-color: #657C74;
 }
+.history {
+  color: #E1EEE9;
+  position: absolute;
+  left: 215px;
+  font-size: 40px;
+}
+.algorithms {
+  color: #E1EEE9;
+  position: absolute;
+  /* left: px; */
+  font-size: 25px;
+  top: 712px;
+}
+
+
 
 /* .chat-list {
   display: flex;

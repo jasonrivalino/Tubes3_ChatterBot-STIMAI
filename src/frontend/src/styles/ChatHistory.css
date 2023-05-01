@@ -1,10 +1,10 @@
 .chat-history {
     width: 445px;
     height: 642px;
-    background-color: #7f9f9e;
+    background-color: #B3C5C4;
     position: absolute;
     left: 80px;
     top: 65px;
     margin-top: 0px;
-    border-radius: 25px;
+    border-radius: 20px;
 }
