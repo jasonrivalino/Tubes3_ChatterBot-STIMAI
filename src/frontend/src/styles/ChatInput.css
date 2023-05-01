@@ -1,15 +1,15 @@
 .chat-input {
     display: flex;
     align-items: center;
-    width: 1060px;
-    margin-top: 1rem;
+    width: 845px;
+    margin-top: 7px;
     position: relative;
-    left: 266px;
+    left: 237px;
   }
   
   .chat-input input {
     flex: 1;
-    padding: 20px;
+    padding: 15px;
     border-radius: 0.5rem;
     border: none;
     background-color: #E1EEE9;
@@ -26,9 +26,9 @@
     font-size: 20px;
     cursor: pointer;
     width: 100px;
-    margin-left: 10px;
+    margin-left: 0px;
     position: relative;
-    left: 18px;
+    left: 33px;
   }
   
   .chat-input button:hover {

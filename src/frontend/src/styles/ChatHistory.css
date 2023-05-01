@@ -1,9 +1,9 @@
 .chat-history {
-    width: 495px;
-    height: 706px;
+    width: 445px;
+    height: 642px;
     background-color: #7f9f9e;
     position: absolute;
-    left: 40px;
+    left: 80px;
     top: 65px;
     margin-top: 0px;
     border-radius: 25px;
