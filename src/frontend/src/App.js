@@ -3,6 +3,8 @@ import './styles/LandingPage.css';
 import React, { useState } from "react";
 import ChatList from "./components/ChatList";
 import ChatInput from "./components/ChatInput";
+import "./styles/ChatHistory.css";
+import RadioButton from './components/RadioButton';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -13,8 +15,20 @@ function App() {
   return (
     <div className="myBG">
     <div className="container">
+      <div className='chat-history'></div>
+      <h1 className="title">ChatterBot-STIM(AI)</h1>
+      <h2 className="history">History</h2>
+      <h3 className="algorithms">Algoritma:</h3>
       <ChatList messages={messages} />
       <ChatInput addMessage={addMessage} />
+      <RadioButton
+        name="algoritma"
+        value1="0"
+        label1="   Knuth-Moore-Pratt (KMP)"
+        value2="1"
+        label2="   Boyer-Moore (BM)"
+        defaultValue="0"
+      />
     </div>
     </div>
   );
