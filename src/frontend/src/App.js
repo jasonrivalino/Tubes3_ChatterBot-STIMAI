@@ -15,13 +15,14 @@ function App() {
         setMessages([
           ...messages,
           {
-            content: "Ada yang bisa saya bantu?",
+            botMessage: "Ada yang bisa saya bantu?",
+            botName: "Computer",
+            isBot: true,
             fromMe: false,
-            username: "ChatterBot-STIM(AI)",
           },
         ]);
       }
-    }, 500);
+    }, 5000);
   };
 
   return (

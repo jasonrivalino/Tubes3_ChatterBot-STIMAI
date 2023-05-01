@@ -1,18 +1,26 @@
 import React from "react";
 import "../styles/ChatItem.css";
 import zull from "./zul.jpg";
+import robot from "./robot.jpeg";
+import "./ChatInput.js"
 
 const ChatItem = ({ message }) => {
   return (
-    // Set message from me and get return from program
-    <div className= {message.fromMe ? "from-me" : "from-them"}>
+    <div className={message.fromMe ? "from-me" : "from-them"}>
+      <img src={zull} className="chat-avatar" alt="zull" />
       <div className="chat-bubble">
-      <img src = {zull} className="chat-avatar" alt="zull" />
-        <div className="chat-username">
-          {message.fromMe ? "Zulfiansyah" : message.username}
-        </div><br/>
+        <div className="chat-username">{message.fromMe ? "Jason" : message.username}</div><br/>
+        <div className="chat-content">{message.content}</div>
       </div>
-      <div className="chat-content">{message.content}</div>
+      {message.isBot && (
+        <div className="chat-bubble-bot">
+          <img src={robot} className="chat-avatar" alt="zull" />
+          <div className="chat-bubble-bot">
+            <div className="chat-username">{message.botName}</div><br/>
+            <div className="chat-content">{message.botMessage}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
