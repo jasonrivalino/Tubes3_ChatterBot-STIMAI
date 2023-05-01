@@ -10,6 +10,18 @@ function App() {
   const [messages, setMessages] = useState([]);
   const addMessage = (message) => {
     setMessages([...messages, message]);
+    setTimeout(() => {
+      if (message.fromMe) {
+        setMessages([
+          ...messages,
+          {
+            content: "Ada yang bisa saya bantu?",
+            fromMe: false,
+            username: "ChatterBot-STIM(AI)",
+          },
+        ]);
+      }
+    }, 500);
   };
 
   return (
