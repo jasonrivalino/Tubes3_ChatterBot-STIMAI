@@ -5,7 +5,7 @@
     margin-top: 7px;
     position: absolute;
     left: 580px;
-    top: 720px;
+    top: 665px;
   }
   
   .chat-input input {
@@ -20,7 +20,8 @@
   }
   
   .chat-input button {
-    padding: 16px;
+    padding: 2px;
+    padding-bottom: 0px;
     /* border-radius: 0.5rem; */
     border: none;
     background-color: #475550;

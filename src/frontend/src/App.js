@@ -3,28 +3,32 @@ import './styles/LandingPage.css';
 import React, { useState } from "react";
 import ChatList from "./components/ChatList";
 import ChatInput from "./components/ChatInput";
-import "./styles/ChatHistory.css";
+import ChatHistory from './components/ChatHistory';
 import RadioButton from './components/RadioButton';
 
 function App() {
   const [messages, setMessages] = useState([]);
   const addMessage = (message) => {
-    setMessages([...messages, message]);
+    setMessages([...messages, {...message, fromMe: true}]);
     setTimeout(() => {
       if (message.fromMe) {
         setMessages([
           ...messages,
           {
             botMessage: "Ada yang bisa saya bantu?",
-            botName: "Computer",
+            botName: "Bot",
             isBot: true,
             fromMe: false,
           },
         ]);
       }
-    }, 5000);
+    }, 1500);
   };
 
+  const clearScreen = () => {
+    setMessages([]);
+  };
+  
   return (
     <div className="myBG">
     <div className="container">
@@ -34,6 +38,7 @@ function App() {
       <h3 className="algorithms">Algoritma:</h3>
       <ChatList messages={messages} />
       <ChatInput addMessage={addMessage} />
+      <ChatHistory chatHistory={clearScreen} />
       <RadioButton
         name="algoritma"
         value1="0"

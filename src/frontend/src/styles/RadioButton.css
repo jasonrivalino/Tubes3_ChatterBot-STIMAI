@@ -1,13 +1,13 @@
 .radioButton{
     position: absolute;
-    left: 260px;
-    top: 710px;
-    font-size: 20px;
+    left: 280px;
+    top: 638px;
+    font-size: 32px;
     margin-top: 15px;
     display: flex;
 }
 .radioButton label {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: #E1EEE9;
     text-transform: uppercase;
