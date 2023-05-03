@@ -9,21 +9,22 @@ import RadioButton from './components/RadioButton';
 function App() {
   const [messages, setMessages] = useState([]);
   const addMessage = (message) => {
-    setMessages([...messages, message]);
+    setMessages([...messages, {...message, fromMe: true}]);
     setTimeout(() => {
       if (message.fromMe) {
         setMessages([
           ...messages,
           {
             botMessage: "Ada yang bisa saya bantu?",
-            botName: "Computer",
+            botName: "Bot",
             isBot: true,
             fromMe: false,
           },
         ]);
       }
-    }, 5000);
+    }, 1500);
   };
+  
 
   return (
     <div className="myBG">
