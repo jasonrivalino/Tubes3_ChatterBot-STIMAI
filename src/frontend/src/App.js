@@ -24,6 +24,7 @@ function App() {
       }
     }, 1500);
   };
+  
 
   const clearScreen = () => {
     setMessages([]);
