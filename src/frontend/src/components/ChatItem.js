@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/ChatItem.css";
-import zull from "./zul.jpg";
+import profil from "./blank.jpg";
 import robot from "./robot.jpeg";
 import "./ChatInput.js"
 
@@ -8,11 +8,11 @@ const ChatItem = ({ message }) => {
   return (
     <div className={message.fromMe ? "from-me" : "from-them"}>
       {message.fromMe && (
-        <img src={zull} className="chat-avatar" alt="zull" />
+        <img src={profil} className="chat-avatar" alt="profil" />
       )}
       {!message.fromMe && message.isBot ? (
         <div className="chat-bubble-bott">
-          <img src={robot} className="chat-avatar-bot" alt="zull" />
+          <img src={robot} className="chat-avatar-bot" alt="robot" />
           <div className="chat-bubble-bot">
             <div className="chat-username-bot">{message.botName}</div>
             <br />
