@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/ChatItem.css";
-import profil from "./blank.jpg";
-import robot from "./robot.jpeg";
+import profil from "./assets/blank.jpg";
+import robot from "./assets/robot.jpeg";
 import "./ChatInput.js"
 
 const ChatItem = ({ message }) => {
