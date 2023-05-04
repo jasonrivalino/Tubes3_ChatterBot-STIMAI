@@ -9,6 +9,7 @@ const ChatHistory = ({ chatHistory }) => {
         <div className="chat-history-button">
             <button onClick={clearScreen}>+ㅤAdd New Chat</button>
         </div>
+        
     );
 };
 

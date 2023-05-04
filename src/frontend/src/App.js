@@ -12,31 +12,29 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
-  const addMessage = (message) => {
+const addMessage = (message) => {
+  setMessages((messages) => [
+    ...messages,
+    { ...message, fromMe: true }
+  ]);
+  
+  setTimeout(() => {
+    // Remove content from message
     setMessages((messages) => [
       ...messages,
-      { ...message, fromMe: true }
+      {
+        botMessage: "Ada yang bisa saya bantu?",
+        botName: "Bot",
+        isBot: true,
+        fromMe: false
+      }
     ]);
-    setTimeout(() => {
-      setMessages((messages) => [
-        ...messages,
-        {
-          botMessage: "Ada yang bisa saya bantu?",
-          botName: "Bot",
-          isBot: true,
-          fromMe: false
-        }
-      ]);
-    }, 1000);
     setMessage("");
-  };
-  
-  
-  
-  
+  }, 1000);
+};
 
   const clearScreen = () => {
-    setMessages({ user: [], bot: [] });
+    setMessages([]);
   };
 
 
@@ -48,7 +46,6 @@ function App() {
         <h2 className="history">History</h2>
         <h3 className="algorithms">Algoritma:</h3>
         <ChatList messages={messages} />
-
         <ChatInput addMessage={addMessage} />
         <ChatHistory chatHistory={clearScreen} />
         <RadioButton

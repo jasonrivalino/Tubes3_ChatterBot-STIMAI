@@ -10,14 +10,7 @@ const ChatItem = ({ message }) => {
       {message.fromMe && (
         <img src={zull} className="chat-avatar" alt="zull" />
       )}
-      <div className="chat-bubble">
-        <div className="chat-username">
-          {message.fromMe ? "Jason" : message.username}
-        </div>
-        <br />
-        <div className="chat-content">{message.content}</div>
-      </div>
-      {!message.fromMe && message.isBot && (
+      {!message.fromMe && message.isBot ? (
         <div className="chat-bubble-bott">
           <img src={robot} className="chat-avatar-bot" alt="zull" />
           <div className="chat-bubble-bot">
@@ -25,6 +18,12 @@ const ChatItem = ({ message }) => {
             <br />
             <div className="chat-content-bot">{message.botMessage}</div>
           </div>
+        </div>
+      ) : (
+        <div className="chat-bubble">
+          <div className="chat-username">{message.fromMe ? "Jason" : message.username}</div>
+          <br />
+          <div className="chat-content">{message.content}</div>
         </div>
       )}
     </div>
