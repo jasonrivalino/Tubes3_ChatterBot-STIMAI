@@ -3,7 +3,6 @@ import './styles/LandingPage.css';
 import React, { useState } from 'react';
 import ChatList from "./components/ChatList";
 import ChatInput from "./components/ChatInput";
-import ChatItem from "./components/ChatItem";
 import ChatHistory from './components/ChatHistory';
 import RadioButton from './components/RadioButton';
 
@@ -43,7 +42,9 @@ const addMessage = (message) => {
       <div className="container">
         <div className="chat-history"></div>
         <h1 className="title">ChatterBot-STIM(AI)</h1>
+        <h1 className="nameKelompok">Jason (13521008), Syauqi (13521014), Zul (13521028)</h1>
         <h2 className="history">History</h2>
+        <div className="radioButtonMenu"></div>
         <h3 className="algorithms">Algoritma:</h3>
         <ChatList messages={messages} />
         <ChatInput addMessage={addMessage} />

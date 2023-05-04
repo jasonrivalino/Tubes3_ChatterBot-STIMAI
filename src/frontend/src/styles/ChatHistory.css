@@ -26,3 +26,60 @@
     top: 91px;
     border-radius: 20px;
 }
+
+.chat-history-button button:hover {
+    background-color: #000000;
+}
+
+.historyButtons-container{
+    background-color: #768d85;
+    border-radius: 20px;
+    width: 400px;
+    height: 458px;
+    position: relative;
+    left: -465px;
+    top: 20px;
+    overflow-y: auto;
+}
+
+.historyButtons-container::-webkit-scrollbar {
+    width: 10px;
+}
+  
+.historyButtons-container::-webkit-scrollbar-track {
+    background-color: #E1EEE9;
+    border-radius: 10px;
+}
+  
+.historyButtons-container::-webkit-scrollbar-thumb {
+    background-color: #475550;
+    border-radius: 10px;
+}
+  
+.historyButtons-container::-webkit-scrollbar-thumb:hover {
+    background-color: #5d6e68;
+}
+
+.historyButtons{
+    padding: 2px;
+    padding-bottom: 0px;
+    border: none;
+    background-color: #475550;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    font-display: flex;
+    cursor: pointer;
+    width: 335px;
+    height: 50px;
+    margin-left: 0px;
+    margin-bottom: 15px;
+    position: relative;
+    left: 30px;
+    top: 22px;
+    border-radius: 20px;
+}
+
+.historyButtons:hover {
+    background-color: #000000;
+}
