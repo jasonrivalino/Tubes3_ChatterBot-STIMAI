@@ -8,6 +8,7 @@ const ChatList = ({ messages }) => {
       {messages.map((message, index) => (
         <ChatItem key={index} message={message} />
       ))}
+      <div ref={(el) => {el?.scrollIntoView({ behavior: "smooth" });}}></div>
     </div>
   );
 };
