@@ -38,6 +38,22 @@ func Show(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"listquestion": listquestion})
 }
 
+func SearchQuestionOnDatabase(question string) (models.ListQuestion, error) {
+	var listquestion models.ListQuestion
+
+	if err := models.DB.Where("pertanyaan = ?", question).Find(&listquestion).Error; err != nil {
+		switch err {
+		case gorm.ErrRecordNotFound:
+			return listquestion, err
+		default:
+			return listquestion, err
+		}
+	}
+
+	return listquestion, nil
+
+}
+
 func Create(c *gin.Context) {
 
 	var listquestion models.ListQuestion
@@ -49,6 +65,17 @@ func Create(c *gin.Context) {
 
 	models.DB.Create(&listquestion)
 	c.JSON(http.StatusOK, gin.H{"listquestion": listquestion})
+}
+
+func AddNewQuestion(question string, answer string) error {
+
+	var listquestion models.ListQuestion
+
+	listquestion.Pertanyaan = question
+	listquestion.Jawaban = answer
+
+	return models.DB.Create(&listquestion).Error
+
 }
 
 func Update(c *gin.Context) {
@@ -67,6 +94,14 @@ func Update(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Data berhasil diperbarui"})
 
+}
+
+func UpdateAnswer(data models.ListQuestion, ans string) error {
+
+	data.Jawaban = ans
+
+	// Update data ke database
+	return models.DB.Model(&data).Where("id = ?", data.Id).Updates(&data).Error
 }
 
 func Delete(c *gin.Context) {
@@ -88,4 +123,19 @@ func Delete(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Data berhasil dihapus"})
+}
+
+func DeleteQuestion(question string) error {
+
+	var listquestion models.ListQuestion
+
+	err := models.DB.Where("pertanyaan = ?", question).Delete(&listquestion).Error
+
+	switch err {
+	case gorm.ErrRecordNotFound:
+		return err
+	default:
+		return err
+	}
+
 }
