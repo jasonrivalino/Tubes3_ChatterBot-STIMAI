@@ -1,9 +1,13 @@
 package bm
 
-const NO_OF_CHARS = 256
+import (
+	"strings"
+)
 
-func badCharHeuristic(str string, size int, badchar [NO_OF_CHARS]int) {
-	for i := 0; i < NO_OF_CHARS; i++ {
+const limit = 256
+
+func badCharHeuristic(str string, size int, badchar [limit]int) {
+	for i := 0; i < limit; i++ {
 		badchar[i] = -1
 	}
 	for i := 0; i < size; i++ {
@@ -12,9 +16,12 @@ func badCharHeuristic(str string, size int, badchar [NO_OF_CHARS]int) {
 }
 
 func BoyerMooreSearch(txt string, pat string) int64 {
+	txt = strings.ToLower(txt)
+	pat = strings.ToLower(pat)
+
 	m := len(pat)
 	n := len(txt)
-	var badchar [NO_OF_CHARS]int
+	var badchar [limit]int
 
 	badCharHeuristic(pat, m, badchar)
 
