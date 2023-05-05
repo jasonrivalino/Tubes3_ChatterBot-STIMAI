@@ -6,6 +6,7 @@ function RadioButton(props) {
 
   function handleChange(event) {
     setSelectedValue(event.target.value);
+    props.onChange(event.target.value); // Memanggil fungsi onChange pada props
   }
 
   return (

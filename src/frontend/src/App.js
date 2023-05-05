@@ -8,64 +8,49 @@ import RadioButton from './components/RadioButton';
 import axios from 'axios';
 
 function App() {
-  // const [messages, setMessages] = useState({ user: [], bot: [] });
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState("1"); // Menyimpan nilai dari RadioButton
 
-const addMessage = (message) => {
-  setMessages((messages) => [
-    ...messages,
-    { ...message, fromMe: true }
-  ]);
+  const addMessage = (message) => {
+    setMessages((messages) => [
+      ...messages,
+      { ...message, fromMe: true }
+    ]);
 
-  // SetTimeOut dengan botMessage berasal dari response Post API
-  setTimeout(() => {
-    axios.post('http://localhost:8080/api/history', {
-      id_riwayat : 3,
-      pertanyaan : message.content,
-      str_match : 1
-    })
-    .then(function (response) {
-      console.log(response);
-      setMessages((messages) => [
-        ...messages,
-        {
-          // botMessage mengikuti masukan dari user (message)
-          botMessage: response.data.jawaban,
-          botName: "Bot",
-          isBot: true,
-          fromMe: false
-        }
-      ]);
-      setMessage("");
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }, 1000);
-
-  
-  // setTimeout(() => {
-  //   // Remove content from message
-  //   setMessages((messages) => [
-  //     ...messages,
-  //     {
-  //       // botMessage mengikuti masukan dari user (message)
-  //       botMessage: message.content,
-  //       botName: "Bot",
-  //       isBot: true,
-  //       fromMe: false
-  //     }
-  //   ]);
-  //   setMessage("");
-  // }, 1000);
-};
+    // SetTimeOut dengan botMessage berasal dari response Post API
+    setTimeout(() => {
+      axios.post('http://localhost:8080/api/history', {
+        id_riwayat : 3,
+        pertanyaan : message.content,
+        str_match : parseInt(selectedAlgorithm) // Menggunakan nilai dari RadioButton
+      })
+      .then(function (response) {
+        console.log(response);
+        setMessages((messages) => [
+          ...messages,
+          {
+            botMessage: response.data.jawaban,
+            botName: "Bot",
+            isBot: true,
+            fromMe: false
+          }
+        ]);
+        setMessage("");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }, 1000);
+  };
 
   const clearScreen = () => {
     setMessages([]);
   };
 
-
+  const handleAlgorithmChange = (value) => {
+    setSelectedAlgorithm(value);
+  };
   return (
     <div className="myBG">
       <div className="container">
@@ -85,6 +70,7 @@ const addMessage = (message) => {
           value2="2"
           label2="   BM"
           defaultValue="1"
+          onChange={handleAlgorithmChange}
         />
       </div>
     </div>
