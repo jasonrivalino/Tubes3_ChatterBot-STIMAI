@@ -1,22 +1,21 @@
 .radioButton{
     position: absolute;
-    left: 280px;
-    top: 638px;
+    left: 316px;
+    top: 640px;
     font-size: 32px;
     margin-top: 15px;
     display: flex;
 }
 .radioButton label {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    color: #E1EEE9;
+    color: #3c4944;
     text-transform: uppercase;
     display: flex;
     align-items: center;
-    margin-right: 20px;
-
+    margin-right: 16px;
   }
   
 .radioButton input {
     margin-right: 1px;
-    }
+}

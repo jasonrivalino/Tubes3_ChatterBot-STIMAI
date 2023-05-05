@@ -10,7 +10,6 @@ function RadioButton(props) {
 
   return (
     <div className='radioButton'>
-
       <label>
         <input
           type="radio"
@@ -34,7 +33,6 @@ function RadioButton(props) {
         />
         {props.label2}
       </label>
-    
     </div>
   );
 }
