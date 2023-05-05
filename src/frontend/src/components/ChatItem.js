@@ -16,14 +16,14 @@ const ChatItem = ({ message }) => {
           <div className="chat-bubble-bot">
             <div className="chat-username-bot">{message.botName}</div>
             <br />
-            <div className="chat-content-bot">{message.botMessage}</div>
+            <div className="chat-content-bot" style={{ wordBreak: "break-word" }}>{message.botMessage}</div>
           </div>
         </div>
       ) : (
         <div className="chat-bubble">
           <div className="chat-username">{message.fromMe ? "Jason" : message.username}</div>
           <br />
-          <div className="chat-content">{message.content}</div>
+          <div className="chat-content" style={{ wordBreak: "break-word" }}>{message.content}</div>
         </div>
       )}
     </div>
