@@ -38,6 +38,16 @@ func Show(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"listquestion": listquestion})
 }
 
+func GetAllListQuestion() ([]models.ListQuestion, error) {
+	var listquestion []models.ListQuestion
+
+	if err := models.DB.Find(&listquestion).Error; err != nil {
+		return listquestion, err
+	}
+
+	return listquestion, nil
+}
+
 func SearchQuestionOnDatabase(question string) (models.ListQuestion, error) {
 	var listquestion models.ListQuestion
 

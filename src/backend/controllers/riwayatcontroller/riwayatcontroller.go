@@ -50,17 +50,34 @@ func Create(c *gin.Context) {
 	// models.DB.Create(&product)
 	// c.JSON(http.StatusOK, gin.H{"product": product})
 
-	var riwayat models.Riwayat
+	type Request struct {
+		IdRiwayat    int64  `json:"id_riwayat"`
+		IdPertanyaan int64  `json:"id_pertanyaan"`
+		Pertanyaan   string `json:"pertanyaan"`
+		Jawaban      string `json:"jawaban"`
+		StrMatch     int8   `json:"str_match"`
+	}
 
-	if err := c.ShouldBindJSON(&riwayat); err != nil {
+	var request Request
+
+	if err := c.ShouldBindJSON(&request); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
 
 	// Sekarang cari jawaban atas pertanyaan dari request yang dikirim
-	riwayat.Jawaban = searchanswer.SearchAnswer(riwayat.Pertanyaan)
+	request.Jawaban = searchanswer.SearchAnswer(request.Pertanyaan, request.StrMatch)
+
+	// Copy data dari request ke struct Riwayat
+	riwayat := models.Riwayat{
+		IdRiwayat:    request.IdRiwayat,
+		IdPertanyaan: request.IdPertanyaan,
+		Pertanyaan:   request.Pertanyaan,
+		Jawaban:      request.Jawaban,
+	}
+
 	models.DB.Create(&riwayat)
-	c.JSON(http.StatusOK, gin.H{"riwayat": riwayat})
+	c.JSON(http.StatusOK, gin.H{"riwayat": request})
 }
 
 func Update(c *gin.Context) {

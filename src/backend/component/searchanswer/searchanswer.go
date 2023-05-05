@@ -1,14 +1,16 @@
 package searchanswer
 
 import (
+	"backend/component/bm"
 	"backend/component/checkdateformat"
+	"backend/component/kmp"
 	"backend/component/mathoperation"
 	"backend/controllers/listquestioncontroller"
 	"regexp"
 	"strconv"
 )
 
-func SearchAnswer(question string) string {
+func SearchAnswer(question string, stringMatching int8) string {
 	pattern := regexp.MustCompile(`^\d{1,2}/\d{1,2}/\d{1,4}$`) // Regex untuk mengecek apakah pertanyaan merupakan format tanggal
 
 	// Jika pertanyaan merupakan format tanggal
@@ -84,6 +86,31 @@ func SearchAnswer(question string) string {
 		return "Pertanyaan" + match[1] + "berhasil dihapus"
 	}
 
-	// Jika tidak, maka cek apakah pertanyaan merupakan format operasi matematika secara prefix
+	// Jika input bukan merupakan format tanggal, operasi matematika, maupun perintah untuk menambahkan/hapus pertanyaan
+	// Maka lakukan pencarian pertanyaan yang exact match di dalam database dengan Algoritma KMP atau Boyer-Moore
+	listQuestion, err := listquestioncontroller.GetAllListQuestion()
+
+	switch err {
+	case nil:
+		// Jika tidak terjadi error, maka lakukan pencarian pertanyaan yang exact match di dalam database dengan Algoritma KMP atau Boyer-Moore
+		for _, data := range listQuestion {
+			if stringMatching == 1 {
+				if len(question) > len(data.Pertanyaan) {
+					if kmp.KMPSearch(data.Pertanyaan, question) >= 0 {
+						return data.Jawaban
+					}
+				}
+				if kmp.KMPSearch(question, data.Pertanyaan) >= 0 {
+					return data.Jawaban
+				}
+			} else if stringMatching == 2 {
+				if bm.BoyerMooreSearch(question, data.Pertanyaan) >= 0 {
+					return data.Jawaban
+				}
+			}
+
+		}
+	}
+
 	return "Maaf, saya tidak mengerti pertanyaan Anda"
 }
