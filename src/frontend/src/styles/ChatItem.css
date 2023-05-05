@@ -30,7 +30,7 @@
   border-radius: 50%;
   position: relative;
   left: 15px;
-  top: 20px;
+  top: -25px;
   margin-bottom:-10px;
 }
 
@@ -48,7 +48,7 @@
 .chat-username-bot{
   position: relative;
   left: 68px;
-  top: -5px;
+  top: -48px;
   color: #000000;
   font-weight: bold;
   font-size: 15px;
@@ -61,7 +61,7 @@
     border-radius: 0.2rem;
     max-width: 100%;
     background-color: #E1EEE9;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 
   }
   .chat-content-bot{
@@ -69,9 +69,8 @@
     border-radius: 0.2rem;
     max-width: 100%;
     background-color: #E1EEE9;
-    margin-bottom: 15px;
+    margin-bottom: -35px;
+    position: relative;
+    top: -50px;
    
   }
-.chat-bubble-bott{
-  margin-top: 10px;
-}
