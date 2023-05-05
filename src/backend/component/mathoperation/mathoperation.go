@@ -4,28 +4,15 @@ import (
 	"backend/models/stack"
 	"backend/models/stackfloat"
 	"math"
+	"regexp"
 	"strconv"
 	"strings"
 )
 
 // Fungsi untuk mengecek apakah token merupakan angka
 func IsNumber(token string) bool {
-	switch token {
-	case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-		return true
-	}
-	return false
-}
-
-// Fungsi untuk mengecek apakah string pada infix hanya angka, +, -, *, /, ^, (, ), atau spasi
-func FormatMathOperation(infix string) bool {
-	token := strings.Split(infix, " ")
-	for _, i := range token {
-		if i != "+" && i != "-" && i != "*" && i != "/" && i != "^" && i != "(" && i != ")" && i != " " && !IsNumber(i) {
-			return false
-		}
-	}
-	return true
+	pattern := regexp.MustCompile(`^[0-9]+$`)
+	return pattern.MatchString(token)
 }
 
 // Fungsi untuk mengecek apakah notasi infix sudah valid
@@ -35,7 +22,7 @@ func IsInfixValid(infix string) bool {
 
 	// Menyimpan berapa banyak kurung yang masih terbuka
 	openBracket := 0
-	prevToken := "" // Menyimpan token sebelumnya
+	prevToken := "s" // Menyimpan token sebelumnya
 
 	// Lakukan perulangan sebanyak token
 	for _, token := range tokens {
@@ -67,11 +54,8 @@ func IsInfixValid(infix string) bool {
 	}
 
 	// Jika masih ada kurung yang terbuka, maka infix tidak valid
-	if openBracket != 0 {
-		return false
-	}
 
-	return true
+	return openBracket == 0
 }
 
 func Precedence(operator string) int {

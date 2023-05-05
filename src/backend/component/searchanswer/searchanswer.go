@@ -6,12 +6,10 @@ import (
 	"backend/controllers/listquestioncontroller"
 	"regexp"
 	"strconv"
-
-	"gorm.io/gorm"
 )
 
 func SearchAnswer(question string) string {
-	pattern := regexp.MustCompile(`^\d{1,2}/\d{1,2}/\d{1,2,3,4}$`) // Regex untuk mengecek apakah pertanyaan merupakan format tanggal
+	pattern := regexp.MustCompile(`^\d{1,2}/\d{1,2}/\d{1,4}$`) // Regex untuk mengecek apakah pertanyaan merupakan format tanggal
 
 	// Jika pertanyaan merupakan format tanggal
 	if pattern.MatchString(question) {
@@ -23,12 +21,15 @@ func SearchAnswer(question string) string {
 		return "Maaf, format tanggal tidak valid"
 	}
 
-	pattern = regexp.MustCompile(`^[0-9\s\*\+\-\/\^]*\??$`) // Regex untuk mengecek apakah pertanyaan merupakan format operasi matematika
+	pattern = regexp.MustCompile(`^[0-9\s\*\+\-\/\^\(\)]*\??$`) // Regex untuk mengecek apakah pertanyaan merupakan format operasi matematika
 
 	// Jika pertanyaan merupakan format operasi matematika secara postfix
 	if pattern.MatchString(question) {
 		// Cek lagi apabila format postfixnya valid
 		if mathoperation.IsInfixValid(question) {
+			// Ubah notasi infix menjadi postfix
+			question = mathoperation.InfixToPostfix(question)
+
 			// Jika benar, maka hitung hasilnya
 			ans, err := mathoperation.CalculatePostfix(question)
 			if err != nil {
@@ -49,20 +50,22 @@ func SearchAnswer(question string) string {
 		data, err := listquestioncontroller.SearchQuestionOnDatabase(match[1])
 
 		switch err {
-		// Kasus pertanyaan belum ada di dalam database sebelumnya
+
 		case nil:
+			// Kasus pertanyaan sudah ada di dalam database sebelumnya
+			if data.Id == 0 {
+				if err := listquestioncontroller.AddNewQuestion(match[1], match[2]); err != nil {
+					return "Maaf, tidak dapat menambahkan pertanyaan"
+				}
+				return "Pertanyaan" + match[1] + "berhasil ditambahkan"
+			}
+
+			// Kasus pertanyaan belum ada di dalam database sebelumnya
 			if err := listquestioncontroller.UpdateAnswer(data, match[2]); err != nil {
 				return "Maaf, tidak dapat menambahkan pertanyaan"
 			}
 
 			return strconv.Itoa(int(data.Id)) + "Pertanyaan " + match[1] + " sudah ada! Jawaban akan diupdate ke " + match[2]
-
-		// Kasus pertanyaan sudah ada di dalam database sebelumnya
-		case gorm.ErrRecordNotFound:
-			if err := listquestioncontroller.AddNewQuestion(match[1], match[2]); err != nil {
-				return "Maaf, tidak dapat menambahkan pertanyaan"
-			}
-			return "Pertanyaan" + match[1] + "berhasil ditambahkan"
 
 		// Kasus error
 		default:
