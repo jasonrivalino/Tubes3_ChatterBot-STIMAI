@@ -127,7 +127,6 @@ Untuk pembuatan program ini, pembuatan frontend dilakukan dengan menggunakan bah
  ┃ ┃ ┣ 📜.gitignore
  ┃ ┃ ┣ 📜package-lock.json
  ┃ ┃ ┗ 📜package.json
- ┣ 📜ddd.txt
  ┗ 📜README.md
  ```
  
