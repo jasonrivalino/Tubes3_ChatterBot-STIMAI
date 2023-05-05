@@ -36,7 +36,6 @@
 * [Cara Mengoperasikan Program](#cara-mengoperasikan-program)
 * [Tampilan Interface Program](#tampilan-interface-program)
 * [Acknowledgements](#acknowledgements)
-* [Foto Bersama](#foto-bersama)
 
 ## Deskripsi Singkat
 Repository ini berisi aplikasi ChatGPT sederhana berbasis web. Aplikasi ChatGPT sederhana ini dibangun dengan mengimplementasikan algoritma string matching (Knuth-Morris-Pratt dan Boyer-Moore) dan juga regular expression. Aplikasi ini dapat menjawab pertanyaan berdasarkan masukan dari pengguna. Jenis pertanyaan yang dapat dijawab antara lain:
@@ -156,5 +155,3 @@ Langkah-langkah proses setup program adalah sebagai berikut:
 - Tuhan Yang Maha Esa
 - Dosen Mata Kuliah yaitu Pak Rinaldi (K1), Bu Ulfa (K2), dan Pak Rila (K3)
 - Kakak-Kakak Asisten Mata Kuliah Strategi Algoritma IF2211
-
-## Foto Bersama
