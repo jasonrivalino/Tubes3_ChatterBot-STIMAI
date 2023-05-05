@@ -67,6 +67,8 @@ Untuk pembuatan program ini, pembuatan frontend dilakukan dengan menggunakan bah
  ┃ ┃ ┃ ┃ ┗ 📜checkdateformat.go
  ┃ ┃ ┃ ┣ 📂kmp
  ┃ ┃ ┃ ┃ ┗ 📜kmp.go
+ ┃ ┃ ┃ ┣ 📂lcs
+ ┃ ┃ ┃ ┃ ┗ 📜lcs.go
  ┃ ┃ ┃ ┣ 📂mathoperation
  ┃ ┃ ┃ ┃ ┗ 📜mathoperation.go
  ┃ ┃ ┃ ┗ 📂searchanswer
