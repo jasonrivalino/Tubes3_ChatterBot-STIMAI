@@ -15,7 +15,7 @@ func Index(c *gin.Context) {
 	var riwayat []models.Riwayat
 
 	models.DB.Find(&riwayat)
-	c.JSON(http.StatusOK, gin.H{"riwayat": riwayat})
+	c.JSON(http.StatusOK, riwayat)
 
 }
 
@@ -35,7 +35,7 @@ func Show(c *gin.Context) {
 		}
 	}
 
-	c.JSON(http.StatusOK, gin.H{"riwayat": riwayat})
+	c.JSON(http.StatusOK, riwayat)
 }
 
 func Create(c *gin.Context) {
@@ -77,7 +77,7 @@ func Create(c *gin.Context) {
 	}
 
 	models.DB.Create(&riwayat)
-	c.JSON(http.StatusOK, gin.H{"riwayat": request})
+	c.JSON(http.StatusOK, request)
 }
 
 func Update(c *gin.Context) {
